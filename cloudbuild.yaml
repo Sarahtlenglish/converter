@@ -11,4 +11,5 @@ steps:
 timeout: '1600s'
 options:
   logging: CLOUD_LOGGING_ONLY
-serviceAccount: 'xml-convertion@appspot.gserviceaccount.com' 
+serviceAccount: 'xml-convertion@appspot.gserviceaccount.com'
+region: 'europe-west1' 

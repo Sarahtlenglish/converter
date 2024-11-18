@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='login.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <img src="{{ url_for('static', filename='nm_logo.png') }}" alt="Logo">
+        </div>
+        <h1>Log ind</h1>
+        {% if error %}
+        <p style="color: #e74c3c;">{{ error }}</p>
+        {% endif %}
+        <form method="post">
+            <input type="password" name="password" placeholder="Adgangskode" required>
+            <button type="submit" class="btn">Log ind</button>
+        </form>
+    </div>
+</body>
+</html>

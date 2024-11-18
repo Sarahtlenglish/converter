@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-Converter Tool</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="left-panel">
+            <div class="logo">
+                <img src="{{ url_for('static', filename='nm_logo.png') }}" alt="Logo">
+            </div>
+            <h1 id="converterHeading">Converter tool</h1>
+            <p id="converterDescription">Welcome to our converter app, making it easy to convert specific files to the correct format. Please select the converter you need from the right-side navigation.</p>
+            <a href="{{ url_for('static', filename='avis-data.xlsx') }}" id="skabelonLink" class="download-link">
+                <img src="{{ url_for('static', filename='download.png') }}" alt="Download Icon">
+                Download Skabelon
+            </a>
+        </div>
+        <div class="right-panel">
+            <div class="nav">
+                <ul>
+                    <li><a href="#" id="excelToXmlNav" class="active">Excel to XML</a></li>
+                    <li><a href="#" id="xmlToExcelCsvNav">XML to Excel/CSV</a></li>
+                    <li><a href="#" id="excelToCsvNav">Excel to CSV</a></li>
+                    <li><a href="#" id="csvImageDownloaderNav">CSV Image Downloader</a></li>
+                </ul>
+            </div>
+            <div class="content-wrapper" id="content">
+                <!-- Content for Excel to XML -->
+                <div id="excelToXmlContent">
+                    <form id="uploadFormExcelToXml" method="post" enctype="multipart/form-data">
+                        <div class="file-drop-area">
+                            <input type="file" name="file" id="fileInputExcelToXml" class="file-input">
+                            <label for="fileInputExcelToXml">
+                                <div class="icon">
+                                    <img src="{{ url_for('static', filename='drag.png') }}" alt="Upload Icon">
+                                </div>
+                                <p>Drag and Drop file here or Choose file</p>
+                            </label>
+                        </div>
+                        <div id="fileInfoExcelToXml" class="file-info"></div>
+                        <div class="btn-wrapper">
+                            <button type="submit" class="btn">Convert</button>
+                        </div>
+                    </form>
+                    <div class="progress-container">
+                        <div class="progress-bar">
+                            <div class="progress"></div>
+                        </div>
+                        <div id="progressTextExcelToXml" class="progress-text">Progress: 0%</div>
+                    </div>
+                    <div id="feedbackExcelToXml" class="feedback"></div>
+                </div>
+
+                <!-- Content for XML to Excel/CSV -->
+                <div id="xmlToExcelCsvContent" style="display:none;">
+                    <form id="uploadFormXmlToExcelCsv" method="post" enctype="multipart/form-data">
+                        <div class="file-drop-area">
+                            <input type="file" name="file" id="fileInputXmlToExcelCsv" class="file-input" multiple accept=".xml">
+                            <label for="fileInputXmlToExcelCsv">
+                                <div class="icon">
+                                    <img src="{{ url_for('static', filename='drag.png') }}" alt="Upload Icon">
+                                </div>
+                                <p>Drag and Drop XML files here or Choose files</p>
+                            </label>
+                        </div>
+                        <div id="fileInfoXmlToExcelCsv" class="file-info"></div>
+                        <div class="btn-wrapper">
+                            <button type="submit" class="btn">Convert</button>
+                        </div>
+                    </form>
+                    <div class="progress-container">
+                        <div class="progress-bar">
+                            <div class="progress"></div>
+                        </div>
+                        <div id="progressTextXmlToExcelCsv" class="progress-text">Progress: 0%</div>
+                    </div>
+                    <div id="feedbackXmlToExcelCsv" class="feedback"></div>
+                </div>
+
+                <!-- Content for Excel to CSV -->
+                <div id="excelToCsvContent" style="display:none;">
+                    <form id="uploadFormExcelToCsv" method="post" enctype="multipart/form-data">
+                        <div class="file-drop-area">
+                            <input type="file" name="file" id="fileInputExcelToCsv" class="file-input">
+                            <label for="fileInputExcelToCsv">
+                                <div class="icon">
+                                    <img src="{{ url_for('static', filename='drag.png') }}" alt="Upload Icon">
+                                </div>
+                                <p>Drag and Drop file here or Choose file</p>
+                            </label>
+                        </div>
+                        <div id="fileInfoExcelToCsv" class="file-info"></div>
+                        <div class="btn-wrapper">
+                            <button type="submit" class="btn">Convert</button>
+                        </div>
+                    </form>
+                    <div class="progress-container">
+                        <div class="progress-bar">
+                            <div class="progress"></div>
+                        </div>
+                        <div id="progressTextExcelToCsv" class="progress-text">Progress: 0%</div>
+                    </div>
+                    <div id="feedbackExcelToCsv" class="feedback"></div>
+                </div>
+
+                <!-- Content for CSV Image Downloader -->
+                <div id="csvImageDownloaderContent" style="display:none;">
+                    <form id="uploadFormCsvImageDownloader" method="post" enctype="multipart/form-data">
+                        <div class="file-drop-area">
+                            <input type="file" name="file" id="fileInputCsvImageDownloader" class="file-input">
+                            <label for="fileInputCsvImageDownloader">
+                                <div class="icon">
+                                    <img src="{{ url_for('static', filename='drag.png') }}" alt="Upload Icon">
+                                </div>
+                                <p>Drag and Drop CSV file here or Choose file</p>
+                            </label>
+                        </div>
+                        <div id="fileInfoCsvImageDownloader" class="file-info"></div>
+                        <div class="btn-wrapper">
+                            <button type="submit" class="btn">Download Images</button>
+                        </div>
+                    </form>
+                    <div class="progress-container">
+                        <div class="progress-bar">
+                            <div class="progress"></div>
+                        </div>
+                        <div id="progressTextCsvImageDownloader" class="progress-text">Progress: 0%</div>
+                    </div>
+                    <div id="feedbackCsvImageDownloader" class="feedback"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

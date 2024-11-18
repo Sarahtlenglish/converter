@@ -1,0 +1,34 @@
+{
+  "kind": "storage#policy",
+  "resourceId": "projects/_/buckets/staging.xml-convertion.appspot.com",
+  "version": 1,
+  "etag": "CAI=",
+  "bindings": [
+    {
+      "role": "roles/storage.admin",
+      "members": [
+        "serviceAccount:xml-convertion@appspot.gserviceaccount.com"
+      ]
+    },
+    {
+      "role": "roles/storage.legacyBucketOwner",
+      "members": [
+        "projectEditor:xml-convertion",
+        "projectOwner:xml-convertion"
+      ]
+    },
+    {
+      "role": "roles/storage.admin",
+      "members": [
+        "user:digitalads@nmic.dk"
+      ]
+    },
+     
+    {
+      "role": "roles/storage.legacyBucketReader",
+      "members": [
+        "projectViewer:xml-convertion"
+      ]
+    }
+  ]
+}

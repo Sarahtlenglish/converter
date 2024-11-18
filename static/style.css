@@ -1,0 +1,254 @@
+body {
+    margin: 0;
+    font-family: 'Roboto', Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f4f4f4;
+}
+
+.container {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    background-color: #ffffff;
+    overflow: hidden;
+}
+
+.left-panel {
+    background-color: #6d293a;
+    color: white;
+    width: 42%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 6rem;
+    position: relative;
+}
+
+.left-panel .logo {
+    position: absolute;
+    top: 40px;
+    left: 60px;
+}
+
+.left-panel h1 {
+    font-size: 3.5rem;
+    margin: 0 0 20px;
+    font-weight: 700;
+}
+
+.left-panel p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin: 0 0 30px;
+    max-width: 80%;
+    font-weight: 300;
+}
+
+.right-panel {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff;
+}
+
+.nav {
+    background-color: #f0f0f0;
+    padding: 20px;
+    width: 100%;
+}
+
+.nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: space-around;
+}
+
+.nav ul li {
+    margin: 0;
+}
+
+.nav ul li a {
+    color: #2C3E50;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.nav ul li a:hover, .nav ul li a.active {
+    background-color: #df475c;
+    color: #ffffff;
+}
+
+.content-wrapper {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+}
+
+.converter-content {
+    width: 100%;
+    max-width: 400px;
+}
+
+.file-drop-area {
+    background-color: #f9f9f9;
+    border: 2px dashed #BDC3C7;
+    border-radius: 10px;
+    padding: 40px;
+    text-align: center;
+    margin-bottom: 20px;
+    transition: all 0.3s ease;
+}
+
+.file-drop-area:hover {
+    background-color: #f0f0f0;
+    border-color: #df475c;
+}
+
+.file-drop-area .file-input {
+    display: none;
+}
+
+.file-drop-area label {
+    cursor: pointer;
+}
+
+.file-drop-area .icon {
+    margin-bottom: 15px;
+}
+
+.file-drop-area img {
+    width: 50px;
+}
+
+.file-info {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.btn {
+    background-color: #df475c;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: 100%;
+}
+
+.btn:hover {
+    background-color: #c13046;
+}
+
+.progress-container {
+    margin-top: 20px;
+}
+
+.progress-bar {
+    height: 10px;
+    background-color: #F5F5F5;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.progress-bar .progress {
+    height: 100%;
+    width: 0;
+    background-color: #df475c;
+    transition: width 0.5s ease-in-out;
+}
+
+.progress-text {
+    margin-top: 10px;
+    font-size: 0.9rem;
+    text-align: center;
+    color: #2C3E50;
+}
+
+.feedback {
+    margin-top: 20px;
+    text-align: center;
+    color: #2C3E50;
+    font-weight: bold;
+}
+
+.logo img {
+    height: 40px;
+    width: auto;
+}
+
+.download-link {
+    display: inline-flex;
+    align-items: center;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    transition: opacity 0.3s;
+    background-color: rgba(255, 255, 255, 0.1)  !important;
+    padding: 10px 20px;
+    border-radius: 5px;
+}
+
+.download-link:hover {
+    opacity: 0.8;
+}
+
+.download-link img {
+    margin-right: 10px;
+    width: 20px;
+}
+
+.file-list {
+    margin: 15px 0;
+    max-width: 100%;
+}
+
+.file-entry {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 12px;
+    margin: 5px 0;
+    background-color: #f8f9fa;
+    border-radius: 4px;
+    border: 1px solid #e9ecef;
+}
+
+.file-name {
+    margin-right: 10px;
+    word-break: break-all;
+}
+
+.remove-file-btn {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 4px 8px;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    transition: background-color 0.2s;
+}
+
+.remove-file-btn:hover {
+    background-color: #c82333;
+}
+
+.file-info {
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+}

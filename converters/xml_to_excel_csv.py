@@ -62,13 +62,11 @@ def handle_conversion(files):
                     
                     # Save to Excel and CSV
                     save_to_excel(data, excel_buffer)
-                    save_to_csv(data, csv_buffer)
+                    save_to_csv(data, zipf, base_filename)
                     
                     # Add to zip with unique filenames
                     excel_buffer.seek(0)
                     zipf.writestr(f'{base_filename}.xlsx', excel_buffer.getvalue())
-                    csv_buffer.seek(0)
-                    zipf.writestr(f'{base_filename}.csv', csv_buffer.getvalue().encode('utf-8'))
                     
                 except Exception as e:
                     logging.error(f"Error processing file {xml_file.filename}: {str(e)}")
@@ -183,15 +181,26 @@ def save_to_excel(data, excel_buffer):
     wb.save(excel_buffer)
     logging.debug("Excel data saved to buffer")
 
-def save_to_csv(data, csv_buffer):
+def clean_data(value):
+    """Rens data for specielle tegn."""
+    if value:
+        return value.replace('\n', ' ').replace('\r', '').replace('"', '""')  # Erstat linjeskift og escape citationstegn
+    return ""
+
+def save_to_csv(data, zipf, base_filename):
     """Save the data to a CSV file."""
     headers = set()
     for row in data:
         headers.update(row.keys())
     headers = sorted(list(headers))
 
-    writer = csv.DictWriter(csv_buffer, fieldnames=headers, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL, lineterminator='\r')
+    csv_buffer = io.StringIO(newline='')  # Opret en StringIO buffer til CSV
+    writer = csv.DictWriter(csv_buffer, fieldnames=headers, delimiter=';', quotechar='"', quoting=csv.QUOTE_MINIMAL, lineterminator='\n')
     writer.writeheader()
     for row in data:
-        writer.writerow(row)
-    logging.debug("CSV data saved to buffer")
+        cleaned_row = {key: clean_data(value) for key, value in row.items()}  # Rens data
+        writer.writerow(cleaned_row)
+
+    # Gem CSV indholdet i zip-filen med 'utf-8-sig' encoding
+    zipf.writestr(f'{base_filename}.csv', csv_buffer.getvalue().encode('utf-8-sig'))  # Brug 'utf-8-sig' encoding
+    logging.debug("CSV data saved to zip")

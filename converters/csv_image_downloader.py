@@ -12,7 +12,7 @@ def handle_conversion(file):
         
         # Read the CSV file
         csv_content = file.read().decode('utf-8')
-        csv_reader = csv.DictReader(io.StringIO(csv_content))
+        csv_reader = csv.DictReader(io.StringIO(csv_content), delimiter=';')  # Use semicolon as delimiter
         
         # Create a zip file in memory
         zip_buffer = io.BytesIO()
@@ -20,6 +20,7 @@ def handle_conversion(file):
             for row in csv_reader:
                 image_url = row.get('URLtilprimaerebillede')
                 if image_url:
+                    logging.debug(f"Attempting to download image from URL: {image_url}")
                     try:
                         # Download the image
                         response = requests.get(image_url, timeout=10)
@@ -28,17 +29,23 @@ def handle_conversion(file):
                             filename = os.path.basename(image_url)
                             # Add the image to the zip file
                             zip_file.writestr(filename, response.content)
+                        else:
+                            logging.error(f"Failed to download image, status code: {response.status_code} for URL: {image_url}")
                     except requests.RequestException as e:
                         logging.error(f"Error downloading image {image_url}: {str(e)}")
 
         # Prepare the zip file for download
         zip_buffer.seek(0)
-        return send_file(
-            zip_buffer,
-            mimetype='application/zip',
-            as_attachment=True,
-            download_name='product_images.zip'
-        )
+        if zip_buffer.getvalue():  # Check if zip file has content
+            return send_file(
+                zip_buffer,
+                mimetype='application/zip',
+                as_attachment=True,
+                download_name='product_images.zip'
+            )
+        else:
+            logging.error("The zip file is empty.")
+            return "No images were downloaded.", 404
     except Exception as e:
         logging.error(f"Error during CSV to Image ZIP conversion: {str(e)}")
         raise e

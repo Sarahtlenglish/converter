@@ -54,7 +54,11 @@ def index():
                 return excel_to_csv.handle_conversion(file)
             elif converter_type == 'csv_image_downloader':
                 logging.debug(f"Processing single file with csv_image_downloader converter")
-                return csv_image_downloader.handle_conversion(file)
+                try:
+                    return csv_image_downloader.handle_conversion(file)
+                except Exception as e:
+                    logging.error(f"Error in csv_image_downloader: {str(e)}")
+                    return str(e), 500
             else:
                 logging.error(f"Unknown converter type: {converter_type}")
                 return "Unknown converter type", 400

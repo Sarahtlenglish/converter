@@ -25,8 +25,8 @@ def handle_conversion(file):
         filename = "converted_file.csv"
         temp_file_path = f"/tmp/{filename}"
         
-        # Save as CSV
-        df.to_csv(temp_file_path, index=False, encoding='utf-8')
+        # Save as CSV with semicolon as delimiter
+        df.to_csv(temp_file_path, index=False, encoding='utf-8', sep=';', na_rep='')  # Use semicolon and handle NaN
         
         # Send the file
         response = send_file(temp_file_path, mimetype='text/csv', as_attachment=True, download_name=filename)

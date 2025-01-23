@@ -127,8 +127,8 @@ def parse_xml_to_data(xml_file):
         # Calculate "Broed" field - prioritize broedtekstkort
         broed = broedtekstkort if broedtekstkort else broedtekst
 
-        # Calculate the @image field
-        image_path = f"/images/{varenr}.psd" if varenr else ""
+        # Calculate the @image field with the new path format
+        image_path = f"/Volumes/work_creative/Bygma/BILLEDER/_BYGMA_PRODUKTBILLEDER/{varenr}.psd" if varenr else ""
 
         # Handle multiple logos
         logos = logo.split(',')
